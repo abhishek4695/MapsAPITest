@@ -1,6 +1,9 @@
 package com.streamapp.abhishek.mapsapitest;
 
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -16,8 +19,8 @@ import java.util.HashMap;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
-   /* EditText etX,etY;
-    Button button;*/
+    /* EditText etX,etY;
+     Button button;*/
     public double x = 22.7765673;
     public double y = 86.1437094;
     public String label = "Marker";
@@ -25,29 +28,14 @@ public class MainActivity extends AppCompatActivity {
     ExpandableListAdapter expandableListAdapter;
     List<String> expandableListTitle;
     HashMap<String, List<String>> expandableListDetail;
+    private static final int PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION = 1;
+    private boolean mLocationPermissionGranted;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        /*etX = (EditText) findViewById(R.id.edittextX);
-        etY = (EditText) findViewById(R.id.edittextY);
-        button =(Button) findViewById(R.id.button);
-        etX.setText(Double.toString(x));
-        etY.setText(Double.toString(y));
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, MapsActivity.class);
-                x = Double.parseDouble(etX.getText().toString());
-                y = Double.parseDouble(etY.getText().toString());
-                Bundle bundle = new Bundle();
-                bundle.putDouble("Xcoordinate", x);
-                bundle.putDouble("Ycoordinate", y);
-                intent.putExtras(bundle);
-                startActivity(intent);
-            }
-        });*/
+        getLocationPermission();
 
         expandableListView = (ExpandableListView) findViewById(R.id.expandableListView);
         expandableListDetail = ExpandableListDataPump.getData();
@@ -88,7 +76,7 @@ public class MainActivity extends AppCompatActivity {
                 ).show();*/
                 if (expandableListDetail.get(
                         expandableListTitle.get(groupPosition)).get(
-                        childPosition).equals("Hostel A")){
+                        childPosition).equals("Hostel A")) {
                     Intent intent = new Intent(MainActivity.this, MapsActivity.class);
                     Bundle bundle = new Bundle();
                     x = 22.780257;
@@ -102,10 +90,9 @@ public class MainActivity extends AppCompatActivity {
 
                     intent.putExtras(bundle);
                     startActivity(intent);
-                }
-                else if (expandableListDetail.get(
+                } else if (expandableListDetail.get(
                         expandableListTitle.get(groupPosition)).get(
-                        childPosition).equals("Hostel B")){
+                        childPosition).equals("Hostel B")) {
                     Intent intent = new Intent(MainActivity.this, MapsActivity.class);
                     Bundle bundle = new Bundle();
                     x = 22.781518;
@@ -118,10 +105,9 @@ public class MainActivity extends AppCompatActivity {
                     bundle.putDouble("Ycoordinate", y);
                     intent.putExtras(bundle);
                     startActivity(intent);
-                }
-                else if (expandableListDetail.get(
+                } else if (expandableListDetail.get(
                         expandableListTitle.get(groupPosition)).get(
-                        childPosition).equals("Hostel C")){
+                        childPosition).equals("Hostel C")) {
                     Intent intent = new Intent(MainActivity.this, MapsActivity.class);
                     Bundle bundle = new Bundle();
                     x = 22.781648;
@@ -134,10 +120,9 @@ public class MainActivity extends AppCompatActivity {
                     bundle.putDouble("Ycoordinate", y);
                     intent.putExtras(bundle);
                     startActivity(intent);
-                }
-                else if (expandableListDetail.get(
+                } else if (expandableListDetail.get(
                         expandableListTitle.get(groupPosition)).get(
-                        childPosition).equals("Hostel D")){
+                        childPosition).equals("Hostel D")) {
                     Intent intent = new Intent(MainActivity.this, MapsActivity.class);
                     Bundle bundle = new Bundle();
                     x = 22.780168;
@@ -150,10 +135,9 @@ public class MainActivity extends AppCompatActivity {
                     bundle.putDouble("Ycoordinate", y);
                     intent.putExtras(bundle);
                     startActivity(intent);
-                }
-                else if (expandableListDetail.get(
+                } else if (expandableListDetail.get(
                         expandableListTitle.get(groupPosition)).get(
-                        childPosition).equals("Hostel E")){
+                        childPosition).equals("Hostel E")) {
                     Intent intent = new Intent(MainActivity.this, MapsActivity.class);
                     Bundle bundle = new Bundle();
                     x = 22.773396;
@@ -166,10 +150,9 @@ public class MainActivity extends AppCompatActivity {
                     bundle.putDouble("Ycoordinate", y);
                     intent.putExtras(bundle);
                     startActivity(intent);
-                }
-                else if (expandableListDetail.get(
+                } else if (expandableListDetail.get(
                         expandableListTitle.get(groupPosition)).get(
-                        childPosition).equals("Hostel F")){
+                        childPosition).equals("Hostel F")) {
                     Intent intent = new Intent(MainActivity.this, MapsActivity.class);
                     Bundle bundle = new Bundle();
                     x = 22.773324;
@@ -182,10 +165,9 @@ public class MainActivity extends AppCompatActivity {
                     bundle.putDouble("Ycoordinate", y);
                     intent.putExtras(bundle);
                     startActivity(intent);
-                }
-                else if (expandableListDetail.get(
+                } else if (expandableListDetail.get(
                         expandableListTitle.get(groupPosition)).get(
-                        childPosition).equals("Hostel G")){
+                        childPosition).equals("Hostel G")) {
                     Intent intent = new Intent(MainActivity.this, MapsActivity.class);
                     Bundle bundle = new Bundle();
                     x = 22.7721714;
@@ -198,10 +180,9 @@ public class MainActivity extends AppCompatActivity {
                     bundle.putDouble("Ycoordinate", y);
                     intent.putExtras(bundle);
                     startActivity(intent);
-                }
-                else if (expandableListDetail.get(
+                } else if (expandableListDetail.get(
                         expandableListTitle.get(groupPosition)).get(
-                        childPosition).equals("Hostel H")){
+                        childPosition).equals("Hostel H")) {
                     Intent intent = new Intent(MainActivity.this, MapsActivity.class);
                     Bundle bundle = new Bundle();
                     x = 22.771869;
@@ -214,10 +195,9 @@ public class MainActivity extends AppCompatActivity {
                     bundle.putDouble("Ycoordinate", y);
                     intent.putExtras(bundle);
                     startActivity(intent);
-                }
-                else if (expandableListDetail.get(
+                } else if (expandableListDetail.get(
                         expandableListTitle.get(groupPosition)).get(
-                        childPosition).equals("Hostel I")){
+                        childPosition).equals("Hostel I")) {
                     Intent intent = new Intent(MainActivity.this, MapsActivity.class);
                     Bundle bundle = new Bundle();
                     x = 22.7719442;
@@ -230,10 +210,9 @@ public class MainActivity extends AppCompatActivity {
                     bundle.putDouble("Ycoordinate", y);
                     intent.putExtras(bundle);
                     startActivity(intent);
-                }
-                else if (expandableListDetail.get(
+                } else if (expandableListDetail.get(
                         expandableListTitle.get(groupPosition)).get(
-                        childPosition).equals("Hostel J")){
+                        childPosition).equals("Hostel J")) {
                     Intent intent = new Intent(MainActivity.this, MapsActivity.class);
                     Bundle bundle = new Bundle();
                     x = 22.7718403;
@@ -246,10 +225,9 @@ public class MainActivity extends AppCompatActivity {
                     bundle.putDouble("Ycoordinate", y);
                     intent.putExtras(bundle);
                     startActivity(intent);
-                }
-                else if (expandableListDetail.get(
+                } else if (expandableListDetail.get(
                         expandableListTitle.get(groupPosition)).get(
-                        childPosition).equals("Hostel K")){
+                        childPosition).equals("Hostel K")) {
                     Intent intent = new Intent(MainActivity.this, MapsActivity.class);
                     Bundle bundle = new Bundle();
                     x = 22.77172;
@@ -262,10 +240,9 @@ public class MainActivity extends AppCompatActivity {
                     bundle.putDouble("Ycoordinate", y);
                     intent.putExtras(bundle);
                     startActivity(intent);
-                }
-                else if (expandableListDetail.get(
+                } else if (expandableListDetail.get(
                         expandableListTitle.get(groupPosition)).get(
-                        childPosition).equals("Rani Laxmi Bai Hall of Residence")){
+                        childPosition).equals("Rani Laxmi Bai Hall of Residence")) {
                     Intent intent = new Intent(MainActivity.this, MapsActivity.class);
                     Bundle bundle = new Bundle();
                     x = 22.777976;
@@ -278,10 +255,9 @@ public class MainActivity extends AppCompatActivity {
                     bundle.putDouble("Ycoordinate", y);
                     intent.putExtras(bundle);
                     startActivity(intent);
-                }
-                else if (expandableListDetail.get(
+                } else if (expandableListDetail.get(
                         expandableListTitle.get(groupPosition)).get(
-                        childPosition).equals("Ambedkar Hall of Residence")){
+                        childPosition).equals("Ambedkar Hall of Residence")) {
                     Intent intent = new Intent(MainActivity.this, MapsActivity.class);
                     Bundle bundle = new Bundle();
                     x = 22.778205;
@@ -294,10 +270,9 @@ public class MainActivity extends AppCompatActivity {
                     bundle.putDouble("Ycoordinate", y);
                     intent.putExtras(bundle);
                     startActivity(intent);
-                }
-                else if (expandableListDetail.get(
+                } else if (expandableListDetail.get(
                         expandableListTitle.get(groupPosition)).get(
-                        childPosition).equals("Shyam Da")){
+                        childPosition).equals("Shyam Da")) {
                     Intent intent = new Intent(MainActivity.this, MapsActivity.class);
                     Bundle bundle = new Bundle();
                     x = 22.771659;
@@ -310,10 +285,9 @@ public class MainActivity extends AppCompatActivity {
                     bundle.putDouble("Ycoordinate", y);
                     intent.putExtras(bundle);
                     startActivity(intent);
-                }
-                else if (expandableListDetail.get(
+                } else if (expandableListDetail.get(
                         expandableListTitle.get(groupPosition)).get(
-                        childPosition).equals("NIT Canteen")){
+                        childPosition).equals("NIT Canteen")) {
                     Intent intent = new Intent(MainActivity.this, MapsActivity.class);
                     Bundle bundle = new Bundle();
                     x = 22.778740;
@@ -326,10 +300,9 @@ public class MainActivity extends AppCompatActivity {
                     bundle.putDouble("Ycoordinate", y);
                     intent.putExtras(bundle);
                     startActivity(intent);
-                }
-                else if (expandableListDetail.get(
+                } else if (expandableListDetail.get(
                         expandableListTitle.get(groupPosition)).get(
-                        childPosition).equals("NIT Store")){
+                        childPosition).equals("NIT Store")) {
                     Intent intent = new Intent(MainActivity.this, MapsActivity.class);
                     Bundle bundle = new Bundle();
                     x = 22.777984;
@@ -342,10 +315,9 @@ public class MainActivity extends AppCompatActivity {
                     bundle.putDouble("Ycoordinate", y);
                     intent.putExtras(bundle);
                     startActivity(intent);
-                }
-                else if (expandableListDetail.get(
+                } else if (expandableListDetail.get(
                         expandableListTitle.get(groupPosition)).get(
-                        childPosition).equals("Sudha")){
+                        childPosition).equals("Sudha")) {
                     Intent intent = new Intent(MainActivity.this, MapsActivity.class);
                     Bundle bundle = new Bundle();
                     x = 22.777691;
@@ -358,10 +330,9 @@ public class MainActivity extends AppCompatActivity {
                     bundle.putDouble("Ycoordinate", y);
                     intent.putExtras(bundle);
                     startActivity(intent);
-                }
-                else if (expandableListDetail.get(
+                } else if (expandableListDetail.get(
                         expandableListTitle.get(groupPosition)).get(
-                        childPosition).equals("Amul Cafe")){
+                        childPosition).equals("Amul Cafe")) {
                     Intent intent = new Intent(MainActivity.this, MapsActivity.class);
                     Bundle bundle = new Bundle();
                     x = 22.7749516;
@@ -374,10 +345,9 @@ public class MainActivity extends AppCompatActivity {
                     bundle.putDouble("Ycoordinate", y);
                     intent.putExtras(bundle);
                     startActivity(intent);
-                }
-                else if (expandableListDetail.get(
+                } else if (expandableListDetail.get(
                         expandableListTitle.get(groupPosition)).get(
-                        childPosition).equals("Pradeep Restaurant")){
+                        childPosition).equals("Pradeep Restaurant")) {
                     Intent intent = new Intent(MainActivity.this, MapsActivity.class);
                     Bundle bundle = new Bundle();
                     x = 22.779535;
@@ -390,10 +360,9 @@ public class MainActivity extends AppCompatActivity {
                     bundle.putDouble("Ycoordinate", y);
                     intent.putExtras(bundle);
                     startActivity(intent);
-                }
-                else if (expandableListDetail.get(
+                } else if (expandableListDetail.get(
                         expandableListTitle.get(groupPosition)).get(
-                        childPosition).equals("Vikramshila Sabhagriha (VSG)")){
+                        childPosition).equals("Vikramshila Sabhagriha (VSG)")) {
                     Intent intent = new Intent(MainActivity.this, MapsActivity.class);
                     Bundle bundle = new Bundle();
                     x = 22.777102;
@@ -406,10 +375,9 @@ public class MainActivity extends AppCompatActivity {
                     bundle.putDouble("Ycoordinate", y);
                     intent.putExtras(bundle);
                     startActivity(intent);
-                }
-                else if (expandableListDetail.get(
+                } else if (expandableListDetail.get(
                         expandableListTitle.get(groupPosition)).get(
-                        childPosition).equals("Technology Student Gymkhana (TSG)")){
+                        childPosition).equals("Technology Student Gymkhana (TSG)")) {
                     Intent intent = new Intent(MainActivity.this, MapsActivity.class);
                     Bundle bundle = new Bundle();
                     x = 22.775086;
@@ -428,5 +396,22 @@ public class MainActivity extends AppCompatActivity {
 
         });
 
+    }
+
+    private void getLocationPermission() {
+    /*
+     * Request location permission, so that we can get the location of the
+     * device. The result of the permission request is handled by a callback,
+     * onRequestPermissionsResult.
+     */
+        if (ContextCompat.checkSelfPermission(this.getApplicationContext(),
+                android.Manifest.permission.ACCESS_FINE_LOCATION)
+                == PackageManager.PERMISSION_GRANTED) {
+            mLocationPermissionGranted = true;
+        } else {
+            ActivityCompat.requestPermissions(this,
+                    new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION},
+                    PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION);
+        }
     }
 }
