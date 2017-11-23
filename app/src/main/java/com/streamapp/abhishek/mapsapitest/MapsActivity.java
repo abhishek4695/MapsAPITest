@@ -144,7 +144,7 @@ public class MapsActivity extends FragmentActivity implements GoogleMap.OnMyLoca
         if(mLastKnownLocation != null) {
             LatLngBounds latLngBounds = new LatLngBounds(new LatLng(
                     mLastKnownLocation.getLatitude(), mLastKnownLocation.getLongitude()), loc);
-            //Constrain the camera target to the current location and marker
+            //Constrain camera target to the current location and marker
             mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLngBounds.getCenter(), 10));
         }
         mMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
