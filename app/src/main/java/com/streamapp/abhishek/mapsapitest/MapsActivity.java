@@ -3,6 +3,7 @@ package com.streamapp.abhishek.mapsapitest;
 import android.Manifest;
 import android.content.pm.PackageManager;
 import android.location.Location;
+import android.location.LocationManager;
 import android.os.Handler;
 import android.os.Message;
 import android.support.annotation.NonNull;
@@ -26,6 +27,7 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.UiSettings;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.Polyline;
 import com.google.android.gms.maps.model.PolylineOptions;
@@ -52,7 +54,7 @@ public class MapsActivity extends FragmentActivity implements GoogleMap.OnMyLoca
 
     // A default location (Sydney, Australia) and default zoom to use when location permission is
     // not granted.
-    private final LatLng mDefaultLocation = new LatLng(-33.8523341, 151.2106085);
+    private final LatLng mDefaultLocation = new LatLng(22.7765673,86.1437094);
     private static final int DEFAULT_ZOOM = 15;
     private static final int PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION = 1;
     private boolean mLocationPermissionGranted;
@@ -139,6 +141,12 @@ public class MapsActivity extends FragmentActivity implements GoogleMap.OnMyLoca
                 .bearing(90)                // Sets the orientation of the camera to east
                 .tilt(30)                   // Sets the tilt of the camera to 30 degrees
                 .build();                   // Creates a CameraPosition from the builder
+        if(mLastKnownLocation != null) {
+            LatLngBounds latLngBounds = new LatLngBounds(new LatLng(
+                    mLastKnownLocation.getLatitude(), mLastKnownLocation.getLongitude()), loc);
+            //Constrain the camera target to the current location and marker
+            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLngBounds.getCenter(), 10));
+        }
         mMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
     }
 
