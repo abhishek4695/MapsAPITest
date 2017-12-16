@@ -1,17 +1,22 @@
 package com.streamapp.abhishek.mapsapitest;
 
 import android.Manifest;
+import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationManager;
 import android.os.Handler;
 import android.os.Message;
+import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -40,7 +45,8 @@ import org.w3c.dom.Document;
 import java.util.ArrayList;
 
 public class MapsActivity extends FragmentActivity implements GoogleMap.OnMyLocationButtonClickListener, GoogleMap.OnMyLocationClickListener , OnMapReadyCallback {
-
+    /* This activity can be called from anywhere with three parameters. 2 Double variables with latitude and longitude with keys
+     "Xcoordinate" and "Ycoordinate" respectively and a string label with key "MarkerText" */
     private GoogleMap mMap;
     Bundle bundlerec;
     Double X1,Y1;
@@ -212,9 +218,11 @@ public class MapsActivity extends FragmentActivity implements GoogleMap.OnMyLoca
                         if (task.isSuccessful()) {
                             // Set the map's camera position to the current location of the device.
                             mLastKnownLocation = (Location) task.getResult();
-                            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(
-                                    new LatLng(mLastKnownLocation.getLatitude(),
-                                            mLastKnownLocation.getLongitude()), DEFAULT_ZOOM));
+                            if(mLastKnownLocation != null) {
+                                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(
+                                        new LatLng(mLastKnownLocation.getLatitude(),
+                                                mLastKnownLocation.getLongitude()), DEFAULT_ZOOM));
+                            }
                         } else {
                            /* Log.d(TAG, "Current location is null. Using defaults.");
                             Log.e(TAG, "Exception: %s", task.getException());*/
@@ -228,4 +236,5 @@ public class MapsActivity extends FragmentActivity implements GoogleMap.OnMyLoca
             Log.e("Exception: %s", e.getMessage());
         }
     }
+
 }

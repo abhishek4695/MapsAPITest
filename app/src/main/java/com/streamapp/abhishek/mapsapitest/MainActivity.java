@@ -1,9 +1,14 @@
 package com.streamapp.abhishek.mapsapitest;
 
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.location.LocationManager;
+import android.provider.Settings;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -36,6 +41,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         getLocationPermission();
+        if (!canGetLocation() == true) {
+            showSettingsAlert();
+        }
 
         expandableListView = (ExpandableListView) findViewById(R.id.expandableListView);
         expandableListDetail = ExpandableListDataPump.getData();
@@ -43,13 +51,14 @@ public class MainActivity extends AppCompatActivity {
         java.util.Collections.sort(expandableListTitle);
         expandableListAdapter = new CustomExpandableListAdapter(this, expandableListTitle, expandableListDetail);
         expandableListView.setAdapter(expandableListAdapter);
+        final int[] prevExpandPosition = {-1};
         expandableListView.setOnGroupExpandListener(new ExpandableListView.OnGroupExpandListener() {
-
             @Override
             public void onGroupExpand(int groupPosition) {
-                /*Toast.makeText(getApplicationContext(),
-                        expandableListTitle.get(groupPosition) + " List Expanded.",
-                        Toast.LENGTH_SHORT).show();*/
+                if (prevExpandPosition[0] >= 0) {
+                    expandableListView.collapseGroup(prevExpandPosition[0]);
+                }
+                prevExpandPosition[0] = groupPosition;
             }
         });
         expandableListView.setOnGroupCollapseListener(new ExpandableListView.OnGroupCollapseListener() {
@@ -66,29 +75,22 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public boolean onChildClick(ExpandableListView parent, View v,
                                         int groupPosition, int childPosition, long id) {
-               /* Toast.makeText(
-                        getApplicationContext(),
-                        expandableListTitle.get(groupPosition)
-                                + " -> "
-                                + expandableListDetail.get(
-                                expandableListTitle.get(groupPosition)).get(
-                                childPosition) + "   " + groupPosition + "," + childPosition + "." + id, Toast.LENGTH_SHORT
-                ).show();*/
+
                 if (expandableListDetail.get(
                         expandableListTitle.get(groupPosition)).get(
                         childPosition).equals("Hostel A")) {
                     Intent intent = new Intent(MainActivity.this, MapsActivity.class);
                     Bundle bundle = new Bundle();
-                    x = 22.780257;
-                    y = 86.144046;
+                    x = 22.780257;              //set latitide of location
+                    y = 86.144046;              //set longitude of loaction
                     label = expandableListDetail.get(
                             expandableListTitle.get(groupPosition)).get(
-                            childPosition);
-                    bundle.putString("MarkerText", label);
+                            childPosition);        //set label which will be shown over marker
+                    bundle.putString("MarkerText", label);  //put all values in bundle
                     bundle.putDouble("Xcoordinate", x);
                     bundle.putDouble("Ycoordinate", y);
 
-                    intent.putExtras(bundle);
+                    intent.putExtras(bundle);           //put extras into the intent
                     startActivity(intent);
                 } else if (expandableListDetail.get(
                         expandableListTitle.get(groupPosition)).get(
@@ -391,6 +393,22 @@ public class MainActivity extends AppCompatActivity {
                     intent.putExtras(bundle);
                     startActivity(intent);
                 }
+                else if (expandableListDetail.get(
+                        expandableListTitle.get(groupPosition)).get(
+                        childPosition).equals("Basket Ball Court (BBC)")) {
+                    Intent intent = new Intent(MainActivity.this, MapsActivity.class);
+                    Bundle bundle = new Bundle();
+                    x = 22.779662;
+                    y = 86.143279;
+                    label = expandableListDetail.get(
+                            expandableListTitle.get(groupPosition)).get(
+                            childPosition);
+                    bundle.putString("MarkerText", label);
+                    bundle.putDouble("Xcoordinate", x);
+                    bundle.putDouble("Ycoordinate", y);
+                    intent.putExtras(bundle);
+                    startActivity(intent);
+                }
                 return false;
             }
 
@@ -413,5 +431,55 @@ public class MainActivity extends AppCompatActivity {
                     new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION},
                     PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION);
         }
+    }
+    public void showSettingsAlert() {
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
+
+        // Setting Dialog Title
+        alertDialog.setTitle("Location not enabled!");
+
+        // Setting Dialog Message
+        alertDialog.setMessage("Click to enable or the app will not run");
+
+        // On pressing Settings button
+        alertDialog.setPositiveButton(
+                "Ok",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        Intent intent = new Intent(
+                                Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+                        startActivity(intent);
+                    }
+                });
+
+        alertDialog.show();
+    }
+    public boolean canGetLocation() {
+        boolean result = true;
+        LocationManager lm = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+        boolean gps_enabled = false;
+        boolean network_enabled = false;
+        if (lm == null)
+
+            lm = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+
+        // exceptions will be thrown if provider is not permitted.
+        try {
+            gps_enabled = lm.isProviderEnabled(LocationManager.GPS_PROVIDER);
+        } catch (Exception ex) {
+
+        }
+        try {
+            network_enabled = lm
+                    .isProviderEnabled(LocationManager.NETWORK_PROVIDER);
+        } catch (Exception ex) {
+        }
+        if (gps_enabled == false || network_enabled == false) {
+            result = false;
+        } else {
+            result = true;
+        }
+
+        return result;
     }
 }
