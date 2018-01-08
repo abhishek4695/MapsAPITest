@@ -55,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
         expandableListView.setOnGroupExpandListener(new ExpandableListView.OnGroupExpandListener() {
             @Override
             public void onGroupExpand(int groupPosition) {
-                if (prevExpandPosition[0] >= 0) {
+                if (prevExpandPosition[0] >= 0 && prevExpandPosition[0] != groupPosition) {
                     expandableListView.collapseGroup(prevExpandPosition[0]);
                 }
                 prevExpandPosition[0] = groupPosition;
@@ -409,6 +409,198 @@ public class MainActivity extends AppCompatActivity {
                     intent.putExtras(bundle);
                     startActivity(intent);
                 }
+                else if (expandableListDetail.get(
+                        expandableListTitle.get(groupPosition)).get(
+                        childPosition).equals("Ups Ground")) {
+                    Intent intent = new Intent(MainActivity.this, MapsActivity.class);
+                    Bundle bundle = new Bundle();
+                    x = 22.780823;
+                    y = 86.143414;
+                    label = expandableListDetail.get(
+                            expandableListTitle.get(groupPosition)).get(
+                            childPosition);
+                    bundle.putString("MarkerText", label);
+                    bundle.putDouble("Xcoordinate", x);
+                    bundle.putDouble("Ycoordinate", y);
+                    intent.putExtras(bundle);
+                    startActivity(intent);
+                }
+                else if (expandableListDetail.get(
+                        expandableListTitle.get(groupPosition)).get(
+                        childPosition).equals("Downs Ground")) {
+                    Intent intent = new Intent(MainActivity.this, MapsActivity.class);
+                    Bundle bundle = new Bundle();
+                    x = 22.774838;
+                    y = 86.143081;
+                    label = expandableListDetail.get(
+                            expandableListTitle.get(groupPosition)).get(
+                            childPosition);
+                    bundle.putString("MarkerText", label);
+                    bundle.putDouble("Xcoordinate", x);
+                    bundle.putDouble("Ycoordinate", y);
+                    intent.putExtras(bundle);
+                    startActivity(intent);
+                }
+                else if (expandableListDetail.get(
+                        expandableListTitle.get(groupPosition)).get(
+                        childPosition).equals("Rooms 312 and 322")) {
+                    Intent intent = new Intent(MainActivity.this, MapsActivity.class);
+                    Bundle bundle = new Bundle();
+                    x = 22.776777;
+                    y = 86.143486;
+                    label = expandableListDetail.get(
+                            expandableListTitle.get(groupPosition)).get(
+                            childPosition);
+                    bundle.putString("MarkerText", label);
+                    bundle.putDouble("Xcoordinate", x);
+                    bundle.putDouble("Ycoordinate", y);
+                    intent.putExtras(bundle);
+                    startActivity(intent);
+                }
+                else if (expandableListDetail.get(
+                        expandableListTitle.get(groupPosition)).get(
+                        childPosition).equals("Rooms 212 and 222")) {
+                    Intent intent = new Intent(MainActivity.this, MapsActivity.class);
+                    Bundle bundle = new Bundle();
+                    x = 22.777346;
+                    y = 86.143826;
+                    label = expandableListDetail.get(
+                            expandableListTitle.get(groupPosition)).get(
+                            childPosition);
+                    bundle.putString("MarkerText", label);
+                    bundle.putDouble("Xcoordinate", x);
+                    bundle.putDouble("Ycoordinate", y);
+                    intent.putExtras(bundle);
+                    startActivity(intent);
+                }
+                else if (expandableListDetail.get(
+                        expandableListTitle.get(groupPosition)).get(
+                        childPosition).equals("CSE")) {
+                    Intent intent = new Intent(MainActivity.this, MapsActivity.class);
+                    Bundle bundle = new Bundle();
+                    x = 22.777924;
+                    y = 86.143891;
+                    label = expandableListDetail.get(
+                            expandableListTitle.get(groupPosition)).get(
+                            childPosition);
+                    bundle.putString("MarkerText", label);
+                    bundle.putDouble("Xcoordinate", x);
+                    bundle.putDouble("Ycoordinate", y);
+                    intent.putExtras(bundle);
+                    startActivity(intent);
+                }
+                else if (expandableListDetail.get(
+                        expandableListTitle.get(groupPosition)).get(
+                        childPosition).equals("Room 113")) {
+                    Intent intent = new Intent(MainActivity.this, MapsActivity.class);
+                    Bundle bundle = new Bundle();
+                    x = 22.777924;
+                    y = 86.143891;
+                    label = expandableListDetail.get(
+                            expandableListTitle.get(groupPosition)).get(
+                            childPosition);
+                    bundle.putString("MarkerText", label);
+                    bundle.putDouble("Xcoordinate", x);
+                    bundle.putDouble("Ycoordinate", y);
+                    intent.putExtras(bundle);
+                    startActivity(intent);
+                }
+                else if (expandableListDetail.get(
+                        expandableListTitle.get(groupPosition)).get(
+                        childPosition).equals("Computer Centre (CC) ")) {
+                    Intent intent = new Intent(MainActivity.this, MapsActivity.class);
+                    Bundle bundle = new Bundle();
+                    x = 22.777255;
+                    y = 86.145329;
+                    label = expandableListDetail.get(
+                            expandableListTitle.get(groupPosition)).get(
+                            childPosition);
+                    bundle.putString("MarkerText", label);
+                    bundle.putDouble("Xcoordinate", x);
+                    bundle.putDouble("Ycoordinate", y);
+                    intent.putExtras(bundle);
+                    startActivity(intent);
+                }
+                else if (expandableListDetail.get(
+                        expandableListTitle.get(groupPosition)).get(
+                        childPosition).equals("Library")) {
+                    Intent intent = new Intent(MainActivity.this, MapsActivity.class);
+                    Bundle bundle = new Bundle();
+                    x = 22.776299;
+                    y = 86.145114;
+                    label = expandableListDetail.get(
+                            expandableListTitle.get(groupPosition)).get(
+                            childPosition);
+                    bundle.putString("MarkerText", label);
+                    bundle.putDouble("Xcoordinate", x);
+                    bundle.putDouble("Ycoordinate", y);
+                    intent.putExtras(bundle);
+                    startActivity(intent);
+                }
+                else if (expandableListDetail.get(
+                        expandableListTitle.get(groupPosition)).get(
+                        childPosition).equals("NIT Guest House")) {
+                    Intent intent = new Intent(MainActivity.this, MapsActivity.class);
+                    Bundle bundle = new Bundle();
+                    x = 22.776827;
+                    y = 86.149229;
+                    label = expandableListDetail.get(
+                            expandableListTitle.get(groupPosition)).get(
+                            childPosition);
+                    bundle.putString("MarkerText", label);
+                    bundle.putDouble("Xcoordinate", x);
+                    bundle.putDouble("Ycoordinate", y);
+                    intent.putExtras(bundle);
+                    startActivity(intent);
+                }
+                else if (expandableListDetail.get(
+                        expandableListTitle.get(groupPosition)).get(
+                        childPosition).equals("SBI ATM")) {
+                    Intent intent = new Intent(MainActivity.this, MapsActivity.class);
+                    Bundle bundle = new Bundle();
+                    x = 22.777704;
+                    y = 86.144280;
+                    label = expandableListDetail.get(
+                            expandableListTitle.get(groupPosition)).get(
+                            childPosition);
+                    bundle.putString("MarkerText", label);
+                    bundle.putDouble("Xcoordinate", x);
+                    bundle.putDouble("Ycoordinate", y);
+                    intent.putExtras(bundle);
+                    startActivity(intent);
+                }
+                else if (expandableListDetail.get(
+                        expandableListTitle.get(groupPosition)).get(
+                        childPosition).equals("ICICI Bank ATM")) {
+                    Intent intent = new Intent(MainActivity.this, MapsActivity.class);
+                    Bundle bundle = new Bundle();
+                    x = 22.777792;
+                    y = 86.144307;
+                    label = expandableListDetail.get(
+                            expandableListTitle.get(groupPosition)).get(
+                            childPosition);
+                    bundle.putString("MarkerText", label);
+                    bundle.putDouble("Xcoordinate", x);
+                    bundle.putDouble("Ycoordinate", y);
+                    intent.putExtras(bundle);
+                    startActivity(intent);
+                }
+                else if (expandableListDetail.get(
+                        expandableListTitle.get(groupPosition)).get(
+                        childPosition).equals("State Bank of India")) {
+                    Intent intent = new Intent(MainActivity.this, MapsActivity.class);
+                    Bundle bundle = new Bundle();
+                    x = 22.777431;
+                    y = 86.144229;
+                    label = expandableListDetail.get(
+                            expandableListTitle.get(groupPosition)).get(
+                            childPosition);
+                    bundle.putString("MarkerText", label);
+                    bundle.putDouble("Xcoordinate", x);
+                    bundle.putDouble("Ycoordinate", y);
+                    intent.putExtras(bundle);
+                    startActivity(intent);
+                }
                 return false;
             }
 
@@ -420,7 +612,7 @@ public class MainActivity extends AppCompatActivity {
     /*
      * Request location permission, so that we can get the location of the
      * device. The result of the permission request is handled by a callback,
-     * onRequestPermissionsResult.
+     * onRequestPermissionsResult. 22.776827, 86.149229
      */
         if (ContextCompat.checkSelfPermission(this.getApplicationContext(),
                 android.Manifest.permission.ACCESS_FINE_LOCATION)

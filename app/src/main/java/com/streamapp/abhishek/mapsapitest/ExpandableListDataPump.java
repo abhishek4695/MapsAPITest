@@ -41,11 +41,26 @@ public class ExpandableListDataPump {
         location1.add("Technology Student Gymkhana (TSG)");
         location1.add("Vikramshila Sabhagriha (VSG)");
         location1.add("Basket Ball Court (BBC)");
+        location1.add("Ups Ground");
+        location1.add("Downs Ground");
+        location1.add("Rooms 312 and 322");
+        location1.add("Rooms 212 and 222");
+        location1.add("CSE");
+        location1.add("Room 113");
+
+        List<String> misc = new ArrayList<String>();
+        misc.add("Computer Centre (CC) ");
+        misc.add("Library");
+        misc.add("NIT Guest House");
+        misc.add("SBI ATM");
+        misc.add("ICICI Bank ATM");
+        misc.add("State Bank of India");
 
 
         expandableListDetail.put("HOSTELS", Hostels);
         expandableListDetail.put("PLACES TO EAT", eating);
         expandableListDetail.put("EVENT LOCATIONS", location1);
+        expandableListDetail.put("OTHER LOCATIONS", misc);
         return expandableListDetail;
     }
 }
